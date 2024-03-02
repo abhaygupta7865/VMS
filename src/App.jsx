@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react'
 import Navbar from './component/Navbar/Navbar'
+import Hero from './component/Hero/Hero';
+import About from './component/About/About';
+import Services from './component/Services/Services';
+import CarList from './component/CarList/CarList';
+import Testimonial from './component/Testimonial/Testimonial';
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const App = () =>{
 
@@ -19,10 +26,25 @@ const App = () =>{
       localStorage.setItem("theme","light");
     }
    },[theme]);
-   
+
+  //  AOS Initialization 
+  React.useEffect(() => {
+    AOS.init({
+      offset: 100,
+      duration: 800,
+      easing: "ease-in-sine",
+      delay: 100,
+    });
+    AOS.refresh();
+  }, []);
   return (
       <div>
         <Navbar theme={theme} setTheme={setTheme}/>
+        <Hero theme={theme}/>
+        <About/>
+        <Services/>
+        <CarList/>
+        <Testimonial/>
       </div>
   )
 }
